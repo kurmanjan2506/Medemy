@@ -16,3 +16,4 @@ def peer(request):
     print('context: ', context)
 
     return render(request, 'chat/peer.html', context=context)
+
