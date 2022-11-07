@@ -12,7 +12,6 @@ from rest_framework.pagination import PageNumberPagination
 
 from .permissions import IsCourseAuthor
 from .serializers import WhatYouLearnSerializer, RequirementsSerializer
-from .service import CourseFilter
 from rest_framework.decorators import action
 from rating.models import Favorite
 
