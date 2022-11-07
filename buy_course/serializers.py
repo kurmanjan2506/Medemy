@@ -4,7 +4,7 @@ from buy_course.models import UsersCourse
 
 
 class UsersCourseSerializer(serializers.ModelSerializer):
-    buyer = serializers.ReadOnlyField(source='purchased_courses.username')
+    buyer = serializers.ReadOnlyField(source='buyer.username')
 
     class Meta:
         model = UsersCourse

@@ -50,11 +50,11 @@ class LevelViewSet(ModelViewSet):
 
 
 class CourseViewSet(ModelViewSet):
-    pagination_class = StandartResultPagination
-    filter_backends = (SearchFilter, DjangoFilterBackend)
     queryset = Course.objects.all()
-    filterset_class = CourseFilter
-    search_fields = ['price']
+    pagination_class = StandartResultPagination
+    search_fields = ['title']
+    filter_backends = (SearchFilter, DjangoFilterBackend)
+    filterset_fields = ('owner', 'category', 'price')
 
     def get_permissions(self):
         if self.request.method == 'GET':
