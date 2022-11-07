@@ -24,7 +24,6 @@ class StandartResultPagination(PageNumberPagination):
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = serializers.CategorySerializer
-    pagination_class = StandartResultPagination
     filter_backends = (SearchFilter, DjangoFilterBackend)
     queryset = Category.objects.all()
     search_fields = ['title']
