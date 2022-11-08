@@ -34,7 +34,7 @@ class RegistrationView(APIView):
         if serializer.is_valid(raise_exception=True):
             user = serializer.save()
             if user:
-                # send_confirmation_email(user.email)
+                send_confirmation_email(user.email)
                 send_email_task.delay(user.email)
             return Response(serializer.data, status=201)
         return Response('Bad request!', status=400)

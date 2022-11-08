@@ -72,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    "django_permissions_policy.PermissionsPolicyMiddleware",
 ]
 
 
@@ -285,3 +286,22 @@ CHANNEL_LAYERS = {
 NUMB_TURN_CREDENTIAL = config('NUMB_TURN_CREDENTIAL', default=None)
 NUMB_TURN_USERNAME = config('NUMB_TURN_USERNAME', default=None)
 
+
+# PERMISSIONS_POLICY = {
+#     "accelerometer": [],
+#     "ambient-light-sensor": [],
+#     "autoplay": [],
+#     "camera": [],
+#     "display-capture": [],
+#     "document-domain": [],
+#     "encrypted-media": [],
+#     "fullscreen": [],
+#     "geolocation": [],
+#     "gyroscope": [],
+#     "interest-cohort": [],
+#     "magnetometer": [],
+#     "microphone": [],
+#     "midi": [],
+#     "payment": [],
+#     "usb": [],
+# }
