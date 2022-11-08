@@ -11,23 +11,15 @@ from buy_course.serializers import UsersCourseSerializer
 from course.views import StandartResultPagination
 from . import serializers
 from .models import UsersCourse
-from course.permissions import IsCourseAuthor
-
-
-# class UsersCourseViewSet(ModelViewSet):
-#     serializer_class = serializers.UsersCourseSerializer
-#     pagination_class = StandartResultPagination
-#     filter_backends = (SearchFilter, DjangoFilterBackend)
-#     queryset = UsersCourse.objects.all()
-#     search_fields = ['title']
-#     permission_classes = (permissions.AllowAny,)
+from buy_course.permissions import IsCourseBuyer
+from .send_email import send_confirmation_email
 
 
 class UsersCourseView(APIView):
     def get_permissions(self):
         if self.request.method == 'POST':
             return [permissions.AllowAny()]
-        return [IsCourseAuthor()]
+        return [IsCourseBuyer()]
 
     def get_object(self, pk):
         try:
@@ -43,16 +35,23 @@ class UsersCourseView(APIView):
     def post(self, request):
         serializer = serializers.UsersCourseSerializer(data=request.data)
         course_id = int(request.data['course'])
+        course_title = Course.objects.all()[course_id]
         if request.user.buyer.filter(course=course_id).exists():
             return Response('Вы уже купили этот курс!', 400)
 
         if serializer.is_valid(raise_exception=True):
-            serializer.save(buyer=request.user, paid=True)
+            bought = serializer.save(buyer=request.user, paid=True)
+            if bought:
+                send_confirmation_email(request.user.email, course_title)
             return Response(serializer.data, status=201)
 
-    def delete(self, request):
-        queryset = UsersCourse.objects.all()
-        queryset.delete()
+    def delete(self, request, pk):
+        # course_id = int(request.data['course'])
+        # queryset = UsersCourse.objects.all()
+        # if request.user.buyer.filter(course=course_id).exists():
+        #     queryset.delete()
+        course = self.get_object(pk)
+        course.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

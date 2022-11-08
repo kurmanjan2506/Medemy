@@ -34,7 +34,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 # Для Swagger
 schema_view = get_schema_view(
    openapi.Info(
-      title="Eduction_platform test project",
+      title="Education_platform test project",
       default_version='v1',
       description="Test REST API backend at django",
       terms_of_service="https://www.google.com/policies/terms/",
@@ -72,6 +72,7 @@ urlpatterns = [
     path('api/v1/', include('buy_course.urls')),
     path('', include('video_chat.urls')),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
+    path('chat/', include('chat.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

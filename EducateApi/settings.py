@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'course',
     'rating',
     'video_chat',
+    'chat',
 ]
 
 
