@@ -10,7 +10,7 @@ from .models import Course, Category, WhatYouLearn, Requirements, Lesson, Video,
 from . import serializers
 from rest_framework.pagination import PageNumberPagination
 
-from .permissions import IsCourseAuthor
+from .permissions import IsCourseAuthor, IsCourseAuthorTwo
 from .serializers import WhatYouLearnSerializer, RequirementsSerializer
 from rest_framework.decorators import action
 from rating.models import Favorite
@@ -59,7 +59,8 @@ class CourseViewSet(ModelViewSet):
             return [permissions.AllowAny()]
         if self.request.method == 'POST':
             return [permissions.IsAuthenticated()]
-        return [IsCourseAuthor()]
+        else:
+            return [IsCourseAuthorTwo()]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
