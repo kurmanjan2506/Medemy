@@ -16,4 +16,3 @@ Redis
 django-celery-results
 channels
 channels-redis
-django-permissions-policy
