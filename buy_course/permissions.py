@@ -8,7 +8,6 @@ class IsCourseBuyer(permissions.BasePermission):
         try:
             course_id = int(request.data['course'])
             buyer = get_object_or_404(UsersCourse, id=course_id).buyer
-            print(buyer, '!!!!!!!!!!!!!!11')
             return request.user == buyer
         except:
             return False

@@ -14,6 +14,7 @@ from .permissions import IsCourseAuthor, IsCourseAuthorTwo
 from .serializers import WhatYouLearnSerializer, RequirementsSerializer
 from rest_framework.decorators import action
 from rating.models import Favorite
+from .service import CourseFilter
 
 
 class StandartResultPagination(PageNumberPagination):
@@ -52,7 +53,8 @@ class CourseViewSet(ModelViewSet):
     pagination_class = StandartResultPagination
     search_fields = ['title']
     filter_backends = (SearchFilter, DjangoFilterBackend)
-    filterset_fields = ('owner', 'category', 'price')
+    # filterset_fields = ('owner', 'category', 'price')
+    filterset_class = CourseFilter
 
     def get_permissions(self):
         if self.request.method == 'GET':
