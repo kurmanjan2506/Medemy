@@ -13,5 +13,12 @@ class IsCourseAuthor(permissions.BasePermission):
             return False
 
 
+class IsCourseAuthorTwo(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        print(request.user, obj.owner)
+        return request.user == obj.owner
+
+
+
 
 
