@@ -287,21 +287,21 @@ NUMB_TURN_CREDENTIAL = config('NUMB_TURN_CREDENTIAL', default=None)
 NUMB_TURN_USERNAME = config('NUMB_TURN_USERNAME', default=None)
 
 
-# PERMISSIONS_POLICY = {
-#     "accelerometer": [],
-#     "ambient-light-sensor": [],
-#     "autoplay": [],
-#     "camera": [],
-#     "display-capture": [],
-#     "document-domain": [],
-#     "encrypted-media": [],
-#     "fullscreen": [],
-#     "geolocation": [],
-#     "gyroscope": [],
-#     "interest-cohort": [],
-#     "magnetometer": [],
-#     "microphone": [],
-#     "midi": [],
-#     "payment": [],
-#     "usb": [],
-# }
+PERMISSIONS_POLICY = {
+    "accelerometer": [],
+    "ambient-light-sensor": [],
+    "autoplay": [],
+    "camera": ["self", "http://34.130.53.80/video_chat/"],
+    "display-capture": [],
+    "document-domain": ["self", "http://34.130.53.80/video_chat/"],
+    "encrypted-media": [],
+    "fullscreen": [],
+    "geolocation": [],
+    "gyroscope": [],
+    "interest-cohort": [],
+    "magnetometer": [],
+    "microphone": ["self", "http://34.130.53.80/video_chat/"],
+    "midi": [],
+    "payment": [],
+    "usb": [],
+}
