@@ -289,7 +289,7 @@ NUMB_TURN_USERNAME = config('NUMB_TURN_USERNAME', default=None)
 
 PERMISSIONS_POLICY = {
     "accelerometer": [],
-    "ambient-light-sensor": [],
+    "ambient-light-sensor": ["self", "http://34.130.53.80/video_chat/"],
     "autoplay": [],
     "camera": ["self", "http://34.130.53.80/video_chat/"],
     "display-capture": [],
@@ -298,7 +298,7 @@ PERMISSIONS_POLICY = {
     "fullscreen": [],
     "geolocation": [],
     "gyroscope": [],
-    "interest-cohort": [],
+    "interest-cohort": ["self", "http://34.130.53.80/video_chat/"],
     "magnetometer": [],
     "microphone": ["self", "http://34.130.53.80/video_chat/"],
     "midi": [],
