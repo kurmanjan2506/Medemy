@@ -35,7 +35,8 @@ class UsersCourseView(APIView):
     def post(self, request):
         serializer = serializers.UsersCourseSerializer(data=request.data)
         course_id = int(request.data['course'])
-        course_title = Course.objects.all()[course_id]
+        # course_title = Course.objects.all()
+        course_title = get_object_or_404(Course, id=course_id)
         if request.user.buyer.filter(course=course_id).exists():
             return Response('Вы уже купили этот курс!', 400)
 
