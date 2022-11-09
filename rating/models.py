@@ -42,4 +42,4 @@ class Favorite(models.Model):
 class Comment(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commentss')
     course = models.ForeignKey(course.models.Course, on_delete=models.CASCADE, related_name='commentss')
-    text = models.TextField(blank=True)
+    text = models.TextField()
