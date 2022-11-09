@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from django.db.models import Avg
-
 from . import models
 from .models import Category, Course, WhatYouLearn, Requirements, Lesson, Video, Level
 
