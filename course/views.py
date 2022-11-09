@@ -9,7 +9,6 @@ from rating.serializers import ReviewSerializer
 from .models import Course, Category, WhatYouLearn, Requirements, Lesson, Video, Level
 from . import serializers
 from rest_framework.pagination import PageNumberPagination
-
 from .permissions import IsCourseAuthor, IsCourseAuthorTwo
 from .serializers import WhatYouLearnSerializer, RequirementsSerializer
 from rest_framework.decorators import action
@@ -50,7 +49,7 @@ class LevelViewSet(ModelViewSet):
 
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
-    pagination_class = StandartResultPagination
+    # pagination_class = StandartResultPagination
     search_fields = ['title']
     filter_backends = (SearchFilter, DjangoFilterBackend)
     # filterset_fields = ('owner', 'category', 'price')

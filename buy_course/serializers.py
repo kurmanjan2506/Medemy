@@ -9,3 +9,5 @@ class UsersCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = UsersCourse
         fields = '__all__'
+
+

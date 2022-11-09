@@ -81,6 +81,7 @@ class Requirements(models.Model):
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lesson')
     title = models.CharField(max_length=500)
+    learned = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.title} - {self.course}'

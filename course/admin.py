@@ -27,8 +27,13 @@ admin.site.register(Category)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(WhatYouLearn)
 admin.site.register(Requirements)
-admin.site.register(Lesson)
+# admin.site.register(Lesson)
 admin.site.register(Video)
+
+
+@admin.register(Lesson)
+class Lesson(admin.ModelAdmin):
+    list_display = ('course', 'title', 'learned')
 
 
 
