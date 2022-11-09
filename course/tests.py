@@ -1,3 +1,6 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+class CourseTestCase(TestCase):
+    def test_course(self):
+        pass

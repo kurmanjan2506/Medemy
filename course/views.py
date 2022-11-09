@@ -5,7 +5,7 @@ from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from rating.serializers import ReviewSerializer
+from rating.serializers import ReviewSerializer, CommentSerializer
 from .models import Course, Category, WhatYouLearn, Requirements, Lesson, Video, Level
 from . import serializers
 from rest_framework.pagination import PageNumberPagination
@@ -96,6 +96,20 @@ class CourseViewSet(ModelViewSet):
             return Response('Deleted From Favorites!', status=204)
         Favorite.objects.create(owner=user, course=course)
         return Response('Added to Favorites!', status=201)
+
+    # api/v1/courses/<id>/commentss/
+    @action(['GET', 'POST'], detail=True)
+    def commentss(self, request, pk):
+        course = self.get_object()
+        if request.method == 'GET':
+            commentss = course.commentss.all()
+            serializer = CommentSerializer(commentss, many=True)
+            return response.Response(serializer.data, status=200)
+        data = request.data
+        serializer = CommentSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(owner=request.user, course=course)
+        return response.Response(serializer.data, status=201)
 
 
 class WhatYouLearnViewSet(ModelViewSet):
