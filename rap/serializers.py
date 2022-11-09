@@ -18,10 +18,10 @@ class UserDetailSerializer(serializers.ModelSerializer):
         model = User
         exclude = ('password',)
 
-    def to_representation(self, instance):
-        repr = super().to_representation(instance)
-        repr['bought_courses'] = instance.UsersCourseView
-        return repr
+    # def to_representation(self, instance):
+    #     repr = super().to_representation(instance)
+    #     repr['bought_courses'] = instance.UsersCourseView
+    #     return repr
 
 
 class RegisterSerializer(serializers.ModelSerializer):
